@@ -53,9 +53,34 @@ $(PROG): $(OBJ_DIR)/area.o $(OBJ_DIR)/calcArea.o $(OBJ_DIR)/perimetro.o $(OBJ_DI
 	@echo "+++ [Executavel geometrica criado em $(BIN_DIR)] +++"
 	@echo "============="
 
-# Alvo (target) para a construcao do objeto area.o
-# Define os arquivos area.cpp e area.h como dependencias.
-$(OBJ_DIR)/area.o: $(SRC_DIR)/area.cpp $(INC_DIR)/area.h $(OBJ_DIR)/calcPerimetro.o $(OBJ_DIR)/calcVolume.o
+# Alvo (target) para a construcao do objeto main.o
+# Define os arquivos main.cpp como dependencias.
+$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp 
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+# Alvo (target) para a construcao do objeto menu.o
+# Define os arquivos menu.cpp e menu.h como dependencias.
+$(OBJ_DIR)/menu.o: $(SRC_DIR)/menu.cpp $(INC_DIR)/menu.h 
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+# Alvo (target) para a construcao do objeto calcVolume.o
+# Define os arquivos calcVolume.cpp e calcVolume.h como dependencias.
+$(OBJ_DIR)/calcVolume.o: $(SRC_DIR)/calcVolume.cpp $(INC_DIR)/calcVolume.h
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+# Alvo (target) para a construcao do objeto volume.o
+# Define os arquivos volume.cpp e volume.h como dependencias.
+$(OBJ_DIR)/volume.o: $(SRC_DIR)/volume.cpp $(INC_DIR)/volume.h 
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+# Alvo (target) para a construcao do objeto calcPerimetro.o
+# Define os arquivos calcPerimetro.cpp e calcPerimetro.h como dependencias.
+$(OBJ_DIR)/calcPerimetro.o: $(SRC_DIR)/calcPerimetro.cpp $(INC_DIR)/calcPerimetro.h 
+	$(CC) -c $(CFLAGS) -o $@ $<
+
+# Alvo (target) para a construcao do objeto perimetro.o
+# Define os arquivos perimetro.cpp e perimetro.h como dependencias.
+$(OBJ_DIR)/perimetro.o: $(SRC_DIR)/perimetro.cpp $(INC_DIR)/perimetro.h 
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 # Alvo (target) para a construcao do objeto calcArea.o
@@ -63,34 +88,9 @@ $(OBJ_DIR)/area.o: $(SRC_DIR)/area.cpp $(INC_DIR)/area.h $(OBJ_DIR)/calcPerimetr
 $(OBJ_DIR)/calcArea.o: $(SRC_DIR)/calcArea.cpp $(INC_DIR)/calcArea.h
 	$(CC) -c $(CFLAGS) -o $@ $<
 
-# Alvo (target) para a construcao do objeto perimetro.o
-# Define os arquivos perimetro.cpp e perimetro.h como dependencias.
-$(OBJ_DIR)/perimetro.o: $(SRC_DIR)/perimetro.cpp $(INC_DIR)/perimetro.h $(OBJ_DIR)/menu.o
-	$(CC) -c $(CFLAGS) -o $@ $<
-
-# Alvo (target) para a construcao do objeto calcPerimetro.o
-# Define os arquivos calcPerimetro.cpp e calcPerimetro.h como dependencias.
-$(OBJ_DIR)/calcPerimetro.o: $(SRC_DIR)/calcPerimetro.cpp $(INC_DIR)/calcPerimetro.h $(OBJ_DIR)/perimetro.o
-	$(CC) -c $(CFLAGS) -o $@ $<
-
-# Alvo (target) para a construcao do objeto volume.o
-# Define os arquivos volume.cpp e volume.h como dependencias.
-$(OBJ_DIR)/volume.o: $(SRC_DIR)/volume.cpp $(INC_DIR)/volume.h $(OBJ_DIR)/menu.o
-	$(CC) -c $(CFLAGS) -o $@ $<
-
-# Alvo (target) para a construcao do objeto calcVolume.o
-# Define os arquivos calcVolume.cpp e calcVolume.h como dependencias.
-$(OBJ_DIR)/calcVolume.o: $(SRC_DIR)/calcVolume.cpp $(INC_DIR)/calcVolume.h $(OBJ_DIR)/volume.o
-	$(CC) -c $(CFLAGS) -o $@ $<
-
-# Alvo (target) para a construcao do objeto menu.o
-# Define os arquivos menu.cpp e menu.h como dependencias.
-$(OBJ_DIR)/menu.o: $(SRC_DIR)/menu.cpp $(INC_DIR)/menu.h $(OBJ_DIR)/calcArea.o
-	$(CC) -c $(CFLAGS) -o $@ $<
-
-# Alvo (target) para a construcao do objeto main.o
-# Define os arquivos main.cpp como dependencias.
-$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(OBJ_DIR)/menu.o
+# Alvo (target) para a construcao do objeto area.o
+# Define os arquivos area.cpp e area.h como dependencias.
+$(OBJ_DIR)/area.o: $(SRC_DIR)/area.cpp $(INC_DIR)/area.h
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 # Alvo (target) para a geração automatica de documentacao usando o Doxygen.
