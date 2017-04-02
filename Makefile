@@ -18,13 +18,13 @@ RM = rm -rf
 CC=g++
 
 # Variaveis para os subdiretorios
-LIB_DIR=./lib
-INC_DIR=./include
-SRC_DIR=./src
-OBJ_DIR=./build
-BIN_DIR=./bin
-DOC_DIR=./doc
-TEST_DIR=./test
+LIB_DIR=lib
+INC_DIR=include
+SRC_DIR=src
+OBJ_DIR=build
+BIN_DIR=bin
+DOC_DIR=doc
+TEST_DIR=test
 
 # Nome do programa
 PROG=geometrica
@@ -33,7 +33,7 @@ PROG=geometrica
 CFLAGS = -Wall -pedantic -ansi -std=c++11 -I. -I$(INC_DIR)
 
 # Garante que os alvos desta lista nao sejam confundidos com arquivos de mesmo nome
-.PHONY: all clean distclean doxy
+.PHONY: all clean distclean doxy init
 
 # Define o alvo (target) para a compilacao completa.
 # Define os alvos questao01, questao02 e questao03 como dependencias.
@@ -43,13 +43,18 @@ all: $(PROG)
 debug: CFLAGS += -g -O0
 debug: $(PROG)
 
+# Alvo (target) para a criação da estrutura de diretorios
+# necessaria para a geracao dos arquivos objeto 
+init:
+	@mkdir -p $(OBJ_DIR)/
+
 # Alvo (target) para a construcao do executavel geometrica
 # Define os arquivos area.o, calcArea.o, calcPerimetro.o, calcVolume.o, menu.o, perimetro.o, volume.o e main.o como dependencias
 $(PROG): $(OBJ_DIR)/area.o $(OBJ_DIR)/calcArea.o $(OBJ_DIR)/perimetro.o $(OBJ_DIR)/calcPerimetro.o $(OBJ_DIR)/volume.o $(OBJ_DIR)/calcVolume.o $(OBJ_DIR)/menu.o $(OBJ_DIR)/main.o
 	@echo "============="
 	@echo "Ligando o alvo $@"
 	@echo "============="
-	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $<
+	$(CC) $(CFLAGS) -o $(BIN_DIR)/$@ $^
 	@echo "+++ [Executavel geometrica criado em $(BIN_DIR)] +++"
 	@echo "============="
 
